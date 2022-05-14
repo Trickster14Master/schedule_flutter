@@ -1,0 +1,152 @@
+виджет MaterialApp является отправной точкой которая собирает все виджеты воидино и выдаёт готовый результат
+StatelessWidget - статические виджеты, созданные однажды и не изменяёме в дальнейшем
+statefulWidget - виджет который может менять своё состаяние
+
+Layout Widget - виджеты которые упорядычивают, ограничивают и выравнивают
+-> Single-Child - виджеты которые содержат в нутри себя только 1 виджет, отвечает пораметр Child:
+
+
+Виджет Padding - позволяет создать отступы
+    padding: EdgeInsets.only(top: 100) - задаём отступ сверху 
+
+
+Вилжет Align - расположить виджет в любом месте
+    по умолчанию центрирует по центру 
+
+Form - виджет позволяющий компанавать виджеты ввода 
+
+TextEditingController - предназначен для управления ввода текста в виджет TextField, TextEditingController устанавливается с помощью параметра controller конструктора классов TextField и TextFormField
+
+TextField - строка для пользовательского ввода
+    Widget _input(
+    Icon icin, String hint, TextEditingController controller, bool obsecure) {
+  return Container(
+    padding: EdgeInsets.only(left: 10, top: 20),
+    child: TextField(
+            // привязывем переменную для ввода 
+            controller: _nameController,
+            // стиль для текста
+            style: TextStyle(fontSize: 20, color: Colors.black),
+            // декарирум поле ввода
+            decoration: InputDecoration(
+              // имя поля
+              labelText: "Full",
+              // стиль подсказки
+              hintStyle: TextStyle(fontSize: 20, color: Colors.blue[900]),
+              hintText: "sad",
+              // изменения при наведении
+              focusedBorder: OutlineInputBorder(
+                  // задаём изменения при факусировки
+                  borderSide: BorderSide(color: Colors.blue, width: 3)),
+              // задаём стиль рамок по умолчанию
+              enabledBorder: OutlineInputBorder(
+                  // задаём стиль по умолчанию
+                  borderSide: BorderSide(color: Colors.black, width: 6),
+                  // задаём круговой радиус
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+
+              // иконка справа
+              //suffixIcon: Icon(Icons.delete),
+
+              // иконка справа являющиеся кнопкой
+              suffixIcon: IconButton(
+                icon: Icon(Icons.running_with_errors_sharp),
+                onPressed: () {},
+              ),
+              // иконка
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(10),
+                //стиль иконки
+                child: IconTheme(
+                  // цвет
+                  data: IconThemeData(color: Colors.black),
+                  // сама иконка
+                  child: Icon(Icons.abc),
+                ),
+              ),
+            ),
+          ),
+    ),
+  );
+}
+
+виджет TextFormField - тоже самое что и TextField с большим функционеалом
+    // максимальное количество строк
+            maxLines: 3,
+
+Виджет Container - является условной коробкой в нутри которой могут находится другие виджеты, имеет встроиные функции по настройи распольжения отступов и цвета
+    поля
+        width: MediaQuery.of(context).size.width - получаем адаптивную ширну 
+        decoration: BoxDecoration - задаётся стиль контейнера  
+                        создаёт полоску между левым и правым виджетом 
+                        border: Border(
+                                right: BorderSide(width: 1, color: Colors.white),
+                                ),
+
+-> Multi-Child - виджеты которые несут в себ несколько виджетов, отвечает пораметр Children:<Widgets>[]
+Виджеты Row и Column - виджеты хронящие в себе небольшое количество виджетов, Row отображает все виджеты горизонтально, Column отображает все виджеты вертикально
+Expanded - виджет который помогает распределить место меджу другими виджетами, если всё виджеты будут обёрнуты в Expanded то всё пространство поделется поровну
+    flex - отвечат за пространство которое задаёт виджет по отношению к другим Expanded
+Stack - виджет позволяющий накладывать один виджет на другой
+
+Виджеты
+Scaffold помогает реализовывать стандартные выджеты и стили. Это база 
+поля 
+    backgroundColor - цвет заднего фона 
+    appBar:AppBar() - понель сверху 
+        title - текст AppBar
+        leading - элемент слева (какправило кнопка)
+
+        body - Виджеты отоброжающиеся в основной части экрана 
+
+Text - виджет вывода текста 
+    поля 
+        style: 
+            виджет задающий стиль тексту 
+            TextStyle(color: Colors.white, - цвет текста 
+            fontWeight: FontWeight.bold), - толщина 
+
+
+LinearProgressIndicator - полоска индикачии 
+    backgroundColor: Colors.white - цвет заднего фона 
+    valueColor: AlwaysStoppedAnimation(color) - задаём статическую анимацию и цвет индикатора 
+    value - заполнение индекатора 
+
+
+Divider - создаём линию Divider()
+SafeArea - виджет который создаёт зону в нутри котрой виджеты не будут соприкосатся друг с другом и не будут зависть от модели телефона
+SizedBox - виджет позволяющий задать размеры виджета родителя (виджета внутри которого находится SizedBox)
+    height: 20 - развер отступов 
+Wrap - выиджет который распологает виджеты в виде таблици
+Chip - виджет небольшого размера внутри котрогого распологается текст и иконка
+
+ListView - позволяет скролить виджеты, Динамический ListView заполняется не только в момент создания но ищё и в тот момент когда в него чтото переают (данные пришедшие с сервера)
+    ListView.builder
+    itemBuilder - функция билдела 
+    itemCount - количество переданных элементов 
+    leading - виджет выводящийся с лева 
+    trailing -  виджет выводящийся с права 
+
+
+ListTile - нормилизуют весь список виджетов
+    паля 
+        contentPadding: EdgeInsets - отступы
+        title - выводимый текст 
+        subtitle - вывод второстипенного текста 
+
+
+Card - виджет понели с закруглёнными углами и тенями
+    elevation - поднятие над поверхностью 
+    margin: EdgeInsets - отступы 
+
+Навигация
+метод .push() - добавляет маршрут на ыершину стека(новая страниица отображается по всерх предыдущей)
+метод .pop() - удаляет верхний маршрут из стека (отображается предыдущаяя страница)
+
+для того чтобы добавить изображение нужно создать папку assets, внутри которой должны быть ещё 2 папки, и добавляем папки в файл icons и images, затем добавить путь до изображений в файл pubspec
+
+
+
+
+
+
